@@ -1016,6 +1016,18 @@
         </div>
       </div>
     </section>
+
+    <!-- Banner de consentimento de cookies -->
+    <div class="fixed-bottom bg-dark text-white p-3" id="cookieBanner" style="display: none;">
+      <div class="container d-flex justify-content-between align-items-center">
+        <p class="mb-0">
+          Este site utiliza cookies para melhorar sua experiência. Ao continuar
+          navegando, você concorda com o uso de cookies.
+        </p>
+        <button class="btn btn-primary btn-sm" id="acceptCookies">Aceitar Cookies</button>
+      </div>
+    </div>
+
     <section
       class="footer3 cid-utnpaCfImv"
       data-bs-version="5.1"
@@ -1052,4 +1064,20 @@
       </div>
     </section>
   </body>
+  <script>
+    
+    if (!localStorage.getItem('cookiesAccepted')) {
+      document.getElementById('cookieBanner').style.display = 'block';
+    }
+  
+    document.getElementById('acceptCookies').addEventListener('click', function() {
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted'
+      });
+  
+      localStorage.setItem('cookiesAccepted', 'true');
+      document.getElementById('cookieBanner').style.display = 'none';
+    });
+  </script>
 </html>
